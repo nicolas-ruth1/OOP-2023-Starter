@@ -1,37 +1,40 @@
 package ie.tudublin;
 
+// class that holds a word and its count 
 public class Follow {
-    private String word;
-    private int count;
+    private String word; // the word 
+    private int count; // how many times it appears
 
-    public Follow(String word) {
-        this.word = word;
-        this.count = 1;
-    }    
-
+    // constructs object with given word and count
     public Follow(String word, int count) {
         this.word = word;
         this.count = count;
     }
 
+    // returns word 
     public String getWord() {
         return word;
     }
 
+    // returns amount of times it appears
     public int getCount() {
         return count;
     }
 
-    public void setCount(int count) {
-        this.count = count;
-    }
-    
-    public void incrementCount() {
-        count++;
+    // sets the next word 
+    public void Word(String word) {
+        this.word = word;
     }
 
-    @Override
-    public String toString() {
-        return word + "(" + count + ")";
+    // sets the count of the word 
+    public void CountWord(int count) {
+        this.count = count;
     }
+
+    // increases the count by 1 
+    public void incrementCount() {
+        this.count++;
+    }
+
+
 }
