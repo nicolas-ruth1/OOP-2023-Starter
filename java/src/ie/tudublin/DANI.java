@@ -14,8 +14,9 @@ public class DANI extends PApplet {
 
     public void setup() {
         colorMode(HSB);
-        loadFile("filename.txt");
+        loadFile("small.txt");
         printWords();
+		printSonnet(); // call the method to print the sonnet
     }
 
     public void draw() {
@@ -85,22 +86,37 @@ public class DANI extends PApplet {
     }
 
     public String[] writeSonnet() {
-        String[] sonnet = new String[14];
-        for (int i = 0; i < sonnet.length; i++) {
-            StringBuilder line = new StringBuilder();
-            Word currentWord = words.get((int) random(words.size()));
-            line.append(currentWord.getWord());
-            for (int j = 0; j < 7; j++) {
-                ArrayList<Follow> follows = currentWord.getFollows();
-                if (follows.size() == 0) {
-                    break;
-                }
-                Follow randomFollow = follows.get((int) random(follows.size()));
-                line.append(" " + randomFollow.getWord());
-                currentWord = findWord(randomFollow.getWord());
-            }
-            sonnet[i] = line.toString();
-        }
-        return sonnet;
-    }
+		ArrayList<Word> words = new ArrayList<Word>(this.words);
+		String[] sonnet = new String[14];
+		for (int i = 0; i < sonnet.length; i++) {
+			StringBuilder line = new StringBuilder();
+			Word currentWord = words.get((int) random(words.size()));
+			line.append(currentWord.getWord());
+			for (int j = 0; j < 7; j++) {
+				ArrayList<Follow> follows = currentWord.getFollows();
+				if (follows.size() == 0) {
+					break;
+				}
+				Follow randomFollow = follows.get((int) random(follows.size()));
+				line.append(" " + randomFollow.getWord());
+				currentWord = findWord(randomFollow.getWord());
+			}
+			sonnet[i] = line.toString();
+		}
+		return sonnet;
+	}	
+
+	public void printSonnet() {
+		String[] sonnet = writeSonnet();
+		background(0);
+		fill(255);
+		textSize(20);
+		textAlign(CENTER, CENTER);
+		float y = height / 2 - sonnet.length * 20;
+		for (String line : sonnet) {
+			text(line, width / 2, y);
+			y += 40;
+		}
+	}
+	
 }
