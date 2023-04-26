@@ -37,6 +37,7 @@ public class DANI extends PApplet {
 		return sonnet;
 	}
 
+	// method used to print the contents of the model ArrayList of Word objects
 	public void printModel() {
 		for (Word wordObj : model) {
 			println(wordObj.toString());
@@ -73,6 +74,7 @@ public class DANI extends PApplet {
 		loadFile(filename);
 	}
 
+	// method that is called once when the sketch starts, used to initialize the color mode and call the initializeModel() method to load the ".txt" file and build the word model
 	public void setup() {
 		colorMode(HSB);
 		initializeModel("shakespere.txt");
